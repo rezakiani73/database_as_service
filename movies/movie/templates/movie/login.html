@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script>
+
+        $(window).ready(function () {
+            setTimeout(function () {
+                $('#alert').slideUp(1000);
+            }, 4000);
+
+        });
+        function showing_pass() {
+            var temp = document.getElementById("show_pass");
+            if (temp.type === "password") {
+                temp.type = "text";
+            } else {
+                temp.type = "password"
+            }
+        }
+
+
+        var modal = document.getElementById('id01');
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+</head>
+<body id="main">
+{% if messages %}
+<ul id="alert" class="messages">
+    {% for message in messages %}
+    <li
+            {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h2>DataBase As Service
+    <span id="logo"></span>
+</h2>
+
+
+<form action="{% url 'movie:user_Authenticate' %}" method="post">
+    {% csrf_token %}
+    <div class="imgcontainer">
+        <h4>Login Form</h4>
+    </div>
+
+    <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required id="show_pass">
+
+        <button type="submit">Login<span id="login_logo"></span></button>
+        <input type="checkbox" onclick="showing_pass()">Show Password
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+
+    <button onclick="document.getElementById('id01').style.display='block'"
+            style="font-size: 1em;width:auto;margin-left: 18px;">Sign Up
+    </button>
+</form>
+
+
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+    <form class="modal-content" method="post" action="{% url 'movie:register_handler' %}">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+            <label><b>Firstname</b></label>
+            <input type="text" placeholder="Enter Firstname" name="firstname">
+
+            <label><b>Lastname</b></label>
+            <input type="text" placeholder="Enter Lastname" name="lastname">
+
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email">
+
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username">
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pass">
+
+            <label><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="pass-repeat" >
+            <input type="checkbox" onclick=myFunction()>Show Password
+
+            <div class="clearfix">
+                <button id="submit_button" type="submit" class="signupbtn">Sign Up</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+</html>

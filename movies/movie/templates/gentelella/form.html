@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns="http://www.w3.org/1999/html">
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="fontiran.com:license" content="Y68A9">
+    <link rel="icon" href="{%  static 'favicon.ico' %}" type="image/ico"/>
+    <title>Home</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <!-- bootstrap-wysiwyg -->
+    <link href="{% static 'vendors/google-code-prettify/bin/prettify.min.css' %}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{% static 'vendors/select2/dist/css/select2.min.css' %}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{% static 'vendors/switchery/dist/switchery.min.css' %}" rel="stylesheet">
+    <!-- starrr -->
+    <link href="{% static 'vendors/starrr/dist/starrr.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'vendors/build/css/custom.min.css' %}" rel="stylesheet">
+
+    <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('now_time').innerHTML =
+                h + ":" + m + ":" + s;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+            </script>
+
+
+</head>
+<!-- /header content -->
+<body class="nav-md" onload="startTime()">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col hidden-print">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="{%url 'movie:profile'%}" class="site_title"><i class="fa fa-database"></i>
+                        <span>DBAS</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="{% static 'vendors/build/images/img.png' %}" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>کاربر گرامی</span>
+                        <h2>{{top_name}}</h2>
+                        <span>خوش آمدید</span>
+
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>عمومی</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-home"></i> خانه <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{%url 'movie:profile'%}">داشبورد</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-edit"></i> فرم <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{%url 'movie:profiel_form'%}">فرم کاربری</a></li>
+                                </ul>
+                            </li>
+
+                            <!--<li><a><i class="fa fa-table"></i> جداول <span class="fa fa-chevron-down"></span></a>-->
+                                <!--<ul class="nav child_menu">-->
+                                    <!--<li><a href="tables.html">جداول</a></li>-->
+                                    <!--<li><a href="tables_dynamic.html">جدول پویا</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="خروج" href="{%url 'movie:login'%}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav hidden-print">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{% static 'vendors/build/images/img.png' %}" alt="">{{top_name}}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> نمایه</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span>تنظیمات</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">کمک</a></li>
+                                <li><a href="{%url 'movie:login'%}"><i class="fa fa-sign-out pull-right"></i> خروج</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">6</span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="{% static 'vendors/build/images/img.png' %}"
+                                                                 alt="Profile Image"/></span>
+                                        <span>
+                          <span>پیام جدید</span>
+                          <span class="time">3 دقیقه پیش</span>
+                        </span>
+                                        <span class="message">
+به سرویس دیتابیس به عنوان خدمت ابری خوش آمدید.
+                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>مشاهده تمام اعلان ها</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="date" style="padding: 20px;color: black;">تاریخ امروز :  {{ now_date }}</li>
+                        <li style="padding: 20px;color: black;"><p id="now_time" style="float: left;margin: 0 !important;"></p>ساعت : </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+        <!-- /header content -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>عناصر فرم</h3>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>ایجاد دیتابیس
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
+                                      action="{% url 'movie:profiel_form'%}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">نام
+                                            دیتابیس
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="first-name" required="required" name="db_name"
+                                                   class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">نام جدول<span class="required">*</span>-->
+                                    <!--</label>-->
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                    <!--<input type="text" id="last-name" name="last-name" required="required"-->
+                                    <!--class="form-control col-md-7 col-xs-12">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                            <button type="submit" class="btn btn-primary">انصراف</button>
+                                            <button type="submit" class="btn btn-success">ایجاد</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>دیتابیس های موجود
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                {% if db_user == 'false' %}
+                                <div id="no_dbs">There are no databases</div>
+
+                                {%else%}
+                                <ul>
+                                    {% for i in db_user%}
+                                    <li class="mydbs_title">{{i.0}}</li>
+                                    {%endfor%}
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer class="hidden-print">
+            <div class="pull-left">
+                database as service
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<div id="lock_screen">
+    <table>
+        <tr>
+            <td>
+                <div class="clock"></div>
+                <span class="unlock">
+                    <span class="fa-stack fa-5x">
+                      <i class="fa fa-square-o fa-stack-2x fa-inverse"></i>
+                      <i id="icon_lock" class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- jQuery -->
+<script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+<!-- NProgress -->
+<script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+<!-- bootstrap-progressbar -->
+<script src="{% static 'vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+<!-- iCheck -->
+<script src="{% static 'vendors/iCheck/icheck.min.js' %}"></script>
+
+<!-- bootstrap-daterangepicker -->
+<script src="{% static 'vendors/moment/min/moment.min.js' %}"></script>
+
+<script src="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+<!-- bootstrap-wysiwyg -->
+<script src="{% static 'vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js' %}"></script>
+<script src="{% static 'vendors/jquery.hotkeys/jquery.hotkeys.js' %}"></script>
+<script src="{% static 'vendors/google-code-prettify/src/prettify.js' %}"></script>
+<!-- jQuery Tags Input -->
+<script src="{% static 'vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
+<!-- Switchery -->
+<script src="{% static 'vendors/switchery/dist/switchery.min.js' %}"></script>
+<!-- Select2 -->
+<script src="{% static 'vendors/select2/dist/js/select2.full.min.js' %}"></script>
+<!-- Parsley -->
+<script src="{% static 'vendors/parsleyjs/dist/parsley.min.js' %}"></script>
+<script src="{% static 'vendors/parsleyjs/dist/i18n/fa.js' %}"></script>
+<!-- Autosize -->
+<script src="{% static 'vendors/autosize/dist/autosize.min.js' %}"></script>
+<!-- jQuery autocomplete -->
+<script src="{% static 'vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js' %}"></script>
+<!-- starrr -->
+<script src="{% static 'vendors/starrr/dist/starrr.js' %}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{% static 'vendors/build/js/custom.min.js' %}"></script>
+
+
+</body>
+</html>

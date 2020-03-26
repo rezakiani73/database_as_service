@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Director</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'movie/country.css' %}"/>
+    </head>
+    <body>
+        <h1>Director</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Date of Birth</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.first_name }}</td>
+                        <td>{{ row.last_name }}</td>
+                        <td>{{ row.date_of_birth }}</td>
+                        <td><a href="{% url 'movie:delete_director' %}?id={{ row.id }}">delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+        <form action="{% url 'movie:add_director' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="id" placeholder="id" /><br />
+            <input type="text" name="first_name" placeholder="First Name" /><br />
+            <input type="text" name="last_name" placeholder="Last Name" /><br />
+            <input type="text" name="date_of_birth" placeholder="Date of Birth" /><br />
+            <input type="submit" value="Add" />
+        </form>
+    </body>
+</html>

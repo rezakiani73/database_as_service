@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'movie/country.css' %}">
+    </head>
+    <body>
+        <h1>Movie</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>Name</td>
+                    <td>Director_ID</td>
+                    <td>Country_ID</td>
+                    <td>Year</td>
+                    <td>Description</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.director_id }}</td>
+                        <td>{{ row.country_id }}</td>
+                        <td>{{ row.year }}</td>
+                        <td>{{ row.description }}</td>
+                        <td><a href="{% url 'movie:delete_movie' %}?id={{ row.id }}">delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+        <form action="{% url 'movie:add_movie' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="id" placeholder="id" /><br />
+            <input type="text" name="name" placeholder="Name" /><br />
+            Director : <select name="director_id">
+                {% for director in directors %}
+                    <option value="{{ director.id }}">{{ director.id }} : {{ director.first_name }} {{ director.last_name }}</option>
+                {% endfor %}
+            </select>
+            <br />
+            Country : <select name="country_id">
+                {% for country in countries %}
+                    <option value="{{ country.id }}">{{ country.id }} : {{ country.name }}</option>
+                {% endfor %}
+            </select>
+            <br />
+            <input type="text" name="year" placeholder="Year" /><br />
+            <textarea name="description" placeholder="Description ..."></textarea><br />
+            <input type="submit" value="Add" />
+        </form>
+    </body>
+</html>

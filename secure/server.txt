@@ -1,0 +1,12 @@
+psql -h localhost --username=DBAS -d dbas
+
+sudo cassandra -R
+
+sudo service mongod start
+
+
+
+
+
+
+

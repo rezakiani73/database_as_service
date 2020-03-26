@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Country</title>
+        {% load static %}
+        <link rel="stylesheet"  href="{% static 'movie/country.css' %}"/>
+    </head>
+    <body>
+        <h1>Country</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>Name</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.name }}</td>
+                        <td><a href="{% url 'movie:delete_country' %}?id={{ row.id }}">delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+        <form action="{% url 'movie:add_country' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="id" placeholder="id" /><br />
+            <input type="text" name="name" placeholder="Country Name" /><br />
+            <input type="submit" value="Add" />
+        </form>
+        <br />
+        <form action="{% url 'movie:update_country' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="id" placeholder="id" /><br />
+            <input type="text" name="name" placeholder="Country Name" /><br />
+            <input type="submit" value="Edit" />
+        </form>
+
+    </body>
+</html>

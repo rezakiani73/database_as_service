@@ -1,0 +1,15 @@
+python3.5 
+libraries:{
+psycopg2 , 
+passlib ,
+ pymongo , 
+cassandra-driver}  
+How to install cassandra :
+http://cassandra.apache.org/doc/latest/getting_started/installing.html 
+cassandra:9042
+
+
+How to install mongoDB:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu
+
+

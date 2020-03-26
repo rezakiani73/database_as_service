@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'movie/country.css' %}"/>
+    </head>
+    <body>
+        <h1>Welcome</h1>
+        <a href="{% url 'movie:country' %}">Country</a>
+        <br />
+        <a href="{% url 'movie:director' %}">Director</a>
+        <br />
+        <a href="{% url 'movie:movie' %}">Movie</a>
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>Name</td>
+                    <td>Director</td>
+                    <td>Country</td>
+                    <td>Year</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.name }}</td>
+                        <td>{{ movie.director_name }}</td>
+                        <td>{{ movie.country_name }}</td>
+                        <td>{{ movie.year }}</td>
+                        <td>{{ movie.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+    </body>
+</html>

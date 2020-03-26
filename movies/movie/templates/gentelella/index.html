@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="fa" dir="rtl">
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="fontiran.com:license" content="Y68A9">
+    <link rel="icon" href="{%  static 'favicon.ico' %}" type="image/ico"/>
+    <title>Home</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'vendors/build/css/custom.min.css' %}" rel="stylesheet">
+
+    <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('now_time').innerHTML =
+                h + ":" + m + ":" + s;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+            </script>
+
+
+</head>
+<!-- /header content -->
+<body class="nav-md" onload="startTime()">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col hidden-print">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="{%url 'movie:profile'%}" class="site_title"><i class="fa fa-database"></i>
+                        <span>DBAS</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="{% static 'vendors/build/images/img.png' %}" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>کاربر گرامی</span>
+                        <h2>{{top_name}}</h2>
+                        <span>خوش آمدید</span>
+
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>عمومی</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-home"></i> خانه <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{%url 'movie:profile'%}">داشبورد</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-edit"></i> فرم <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{%url 'movie:profiel_form'%}">فرم کاربری</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="خروج" href="{%url 'movie:login'%}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav hidden-print">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{% static 'vendors/build/images/img.png' %}" alt="">{{top_name}}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> نمایه</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span>تنظیمات</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">کمک</a></li>
+                                <li><a href="{%url 'movie:login'%}"><i class="fa fa-sign-out pull-right"></i> خروج</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span id="number_msg" class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <!--<li>-->
+                                    <!--<a>-->
+                                        <!--<span>-->
+                          <!--<span>پیام </span>-->
+
+                        <!--</span>-->
+                                        <!--<span class="message">-->
+<!--به سرویس دیتابیس به عنوان خدمت ابری خوش آمدید.-->
+                        <!--</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                            </ul>
+                        </li>
+                        <li class="date" style="padding: 20px;color: black;">تاریخ امروز :  {{ now_date }}</li>
+                        <li style="padding: 20px;color: black;"><p id="now_time" style="float: left;margin: 0 !important;"></p>ساعت : </li>
+                        <li class="cost" style="padding: 20px;color: black;">مجموع هزینه های شما:
+                            <a href="{%url 'movie:request'%}"style="float: left;padding: 0px;">
+                                {%if total_cost|add:0 <= 7000%}
+                                <p class="green" style="float: left;margin: 0 !important;padding-right: 5px;line-height: 22px;">{{total_cost}} تومان</p>
+                                {%else%}
+                                <p title="جهت پرداخت هزینه کلیک کنید" class="red" style="float: left;margin: 0 !important;padding-right: 5px;line-height: 22px;">{{total_cost}} تومان</p>
+                                {%endif%}
+                            </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+        <!-- /header content -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <!-- top tiles -->
+
+            {% if no_dbs != 'not null' %}
+            <div class="row tile_count">
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-database"></i> دیتابیس</span>
+                    <div class="count red">no database</div>
+                </div>
+
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-arrow-up"></i>تعداد select</span>
+                    <div class="count">0</div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-edit"></i> تعداد update</span>
+                    <div class="count">0</div>
+
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-trash"></i></i> تعداد delete</span>
+                    <div class="count">0</div>
+
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-download"></i> تعداد insert</span>
+                    <div class="count">0</div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-cart-plus"></i> مجموع درخواست</span>
+                    <div class="count">0</div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-donate"></i>مجموع هزینه ها </span>
+                    <div class="count green">0</div>
+                </div>
+
+            </div>
+
+
+            {% else %}
+            {% for i in db_user%}
+            <div class="row tile_count">
+                <div style="width: 17.279999%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-database"></i> دیتابیس</span>
+                    <div style="font-size: 1em;" class="count">{{i.0}}</div>
+                </div>
+
+                <div style="width: 12%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> تعداد insert
+                    <span class="count_top"><i class="fa fa-download"></i></span>
+                    <div class="count">{{i.1}}</div>
+                </div>
+                <div style="width: 12%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-arrow-up"></i> تعداد select</span>
+                    <div class="count">{{i.2}}</div>
+
+                </div>
+                <div style="width: 12%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-trash"></i></i> تعداد delete</span>
+                    <div class="count">{{i.3}}</div>
+
+                </div>
+                <div style="width: 12%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa  fa-edit"></i> تعداد update</span>
+                    <div class="count">{{i.4}}</div>
+                </div>
+                <div style="width: 14.279999%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-cart-plus"></i> مجموع درخواست</span>
+                    <div class="count">{{i.5}}</div>
+                </div>
+                <div style="width: 20.279999%;" class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-cart-plus"></i> هزینه(هر درخواست 12 تومان)</span>
+                    <div style="font-size: 1.3em;" class="count green">{{ i.6}} تومان</div>
+
+                </div>
+
+
+            </div>
+            {%endfor%}
+            {% endif %}
+
+
+            <!-- /top tiles -->
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                    <!--<div class="dashboard_graph">-->
+
+                        <!--<div class="row x_title">-->
+                            <!--<div class="col-md-6">-->
+                                <!--<h3>نمودار خطی مربوط به دیتابیس ها-->
+
+                                <!--</h3>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-md-12 col-sm-9 col-xs-12">-->
+                            <!--<div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>-->
+                            <!--<div style="width: 100%;">-->
+                                <!--<div id="chart_plot_01" class="demo-placeholder"-->
+                                     <!--style="width: 100%; height:270px;"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <br/>
+
+            <div class="row">
+
+
+                <div class="col-md-6 col-sm-4 col-xs-12">
+                    <div class="x_panel tile fixed_height_320 overflow_hidden">
+                        <div class="x_title">
+                            <h2> نمودار استفاده از تمامی دیتابیس های موجود</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            {% if not Percentage%}
+                            <table class="" style="width:100%">
+
+                                <tr>
+                                    <td>
+                                        <canvas class="canvasDoughnut" height="140" width="140"
+                                                style="margin: 15px 10px 10px 0"></canvas>
+                                    </td>
+                                    <td>
+                                        <table class="tile_info">
+
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square green"></i>UPDATE </p>
+                                                </td>
+                                                <td>0%</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square blue"></i>DELETE </p>
+                                                </td>
+                                                <td>0%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square purple"></i>SELECT</p>
+                                                </td>
+                                                <td>0%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square aero"></i>INSERT </p>
+                                                </td>
+                                                <td>0%</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            {%else%}
+                            <table class="" style="width:100%">
+                                <tr>
+                                    <td>
+                                        <canvas class="canvasDoughnut" height="140" width="140"
+                                                style="margin: 15px 10px 10px 0"></canvas>
+                                    </td>
+                                    <td>
+                                        <table class="tile_info">
+
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square green"></i>UPDATE </p>
+                                                </td>
+                                                <td>{{Percentage.3}}%</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square blue"></i>DELETE </p>
+                                                </td>
+                                                <td>{{Percentage.2}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square purple"></i>SELECT</p>
+                                                </td>
+                                                <td>{{Percentage.1}}%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><i class="fa fa-square aero"></i>INSERT </p>
+                                                </td>
+                                                <td>{{Percentage.0}}%</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            {%endif%}
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>نمودار میله ای
+                                <small>درخواست ها</small>
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            {%if db_user == 'false'%}
+                            <span id="no_bar">no item</span>
+                            {%else%}
+                            <canvas id="mybarChart"></canvas>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <footer class="hidden-print">
+                    <div class="pull-left">
+                        database as service
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+            </div>
+
+
+            <div id="lock_screen">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="clock"></div>
+                <span class="unlock">
+                    <span class="fa-stack fa-5x">
+                      <i class="fa fa-square-o fa-stack-2x fa-inverse"></i>
+                      <i id="icon_lock" class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- jQuery -->
+            <script>
+                var temp = {{chart_items}};
+                var bar_items = {{db_user | safe}};
+
+
+                console.log("{{total_cost}}");
+                var cost_base=7000;
+                if("{{total_cost}}">cost_base) {
+                    var notification = document.createElement("LI");
+                    var a_tag = document.createElement("a");
+                    var span_tag = document.createElement("SPAN");
+                    var Content = document.createTextNode("شما باید هر چه سریع تر به پرداخت هزینه خود اقدام نمایید، درغیر اینصورت حساب شما غیر فعال خواهد شد");
+                    notification.appendChild(a_tag);
+                    a_tag.appendChild(span_tag);
+                    span_tag.appendChild(Content);
+                    document.getElementById("menu1").appendChild(notification);
+                    var number_msg=document.getElementById("number_msg");
+                    var num = document.createTextNode("1");
+                    number_msg.appendChild(num);
+                }
+            </script>
+
+            <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+            <!-- FastClick -->
+            <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+            <!-- NProgress -->
+            <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+            <!-- bootstrap-progressbar -->
+            <script src="{% static 'vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+            <!-- iCheck -->
+            <script src="{% static 'vendors/iCheck/icheck.min.js' %}"></script>
+
+            <!-- bootstrap-daterangepicker -->
+            <script src="{% static 'vendors/moment/min/moment.min.js' %}"></script>
+
+            <script src="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+            <!-- Chart.js -->
+            <script src="{% static 'vendors/Chart.js/dist/Chart.min.js' %}"></script>
+            <!-- jQuery Sparklines -->
+            <script src="{% static 'vendors/jquery-sparkline/dist/jquery.sparkline.min.js' %}"></script>
+            <!-- gauge.js -->
+            <script src="{% static 'vendors/gauge.js/dist/gauge.min.js' %}"></script>
+            <!-- Skycons -->
+            <script src="{% static 'vendors/skycons/skycons.js' %}"></script>
+            <!-- Flot -->
+            <script src="{% static 'vendors/Flot/jquery.flot.js' %}"></script>
+            <script src="{% static 'vendors/Flot/jquery.flot.pie.js' %}"></script>
+            <script src="{% static 'vendors/Flot/jquery.flot.time.js' %}"></script>
+            <script src="{% static 'vendors/Flot/jquery.flot.stack.js' %}"></script>
+            <script src="{% static 'vendors/Flot/jquery.flot.resize.js' %}"></script>
+            <!-- Flot plugins -->
+            <script src="{% static 'vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+            <script src="{% static 'vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+            <script src="{% static 'vendors/flot.curvedlines/curvedLines.js' %}"></script>
+            <!-- DateJS -->
+            <script src="{% static 'vendors/DateJS/build/production/date.min.js' %}"></script>
+            <!-- JQVMap -->
+            <script src="{% static 'vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+            <script src="{% static 'vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+            <script src="{% static 'vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+
+            <!-- Custom Theme Scripts -->
+            <script src="{% static 'vendors/build/js/custom.min.js' %}">test("tiik")</script>
+        </div>
+    </div>
+</div>
+</body>
+</html>
